@@ -1,0 +1,62 @@
+div.content{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+div#login{
+	padding-top: 100px;
+}
+.div-inline{
+    display:inline-block;
+}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+
+header{
+	position: relative;
+	width: 100%;
+	min-height: 600px ;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+	background-position: center;
+	background-image: url(../../img/flags.jpg) ;
+	text-align: center;
+	color: white;
+}
+header .header-content{
+	position: relative;
+	text-align: center;
+	padding: 200px 15px 100px;
+	width: 100%;
+	
+}
+header .header-content .header-content-inner h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 40px;
+  color: white;
+}
+header .header-content .header-content-inner hr {
+  margin: 30px auto;
+}
+header .header-content .header-content-inner p {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+div#ending{
+	height: 27px ;
+}
+
+div#foot{
+	
+	padding: 5px;
+	
+}
+

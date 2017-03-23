@@ -1,0 +1,157 @@
+<div class="container" ng-init="getColsForNetworks()">
+	<h1>TV Trends</h1>
+	<p>Navigate to see trends throughout tv networks during the elections.</p>
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+				<h3 class="section-heading">Monthly/Network Analysis</h3>
+				<hr class="light">
+                <p class="text-faded">Monthly mentions per candidate. Click bar to see results per network.</p>
+                
+		</div>
+		
+		<div class="col-lg-12 text-center">
+			<div ng-init="getColsForNetworks1()" id="chart-container"></div>
+		</div>
+		
+	</div>
+	
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+				<h3 class="section-heading">Network Comparator</h3>
+				<hr class="light">
+                <p class="text-faded">Compare how much each different television network discussed the candidates.</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-6 center">
+			<div>
+				<div ng-init="getPieForNetwork1()" fusioncharts width="100%" height="400" type="pie2d" dataSource={{dataSourceSelectedPie1}}></div>	
+			</div>
+			
+			<div class="text-center">
+				Choose a network:
+				<div class="div-inline">
+					<ui-select " ng-model="selectedTVNetwork1.index" title="Choose a network" on-select="getPieForNetwork1()">
+					    <ui-select-match placeholder="Select a network...">{{$select.selected.name}}</ui-select-match>
+					    <ui-select-choices repeat="selectedTVNetwork1.index as selectedTVNetwork1 in networks | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+					   		<div ng-bind-html="selectedTVNetwork1.name | highlight: $select.search"></div>
+					    </ui-select-choices>
+					</ui-select>		
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-6 text-center">
+			<div>
+				<div ng-init="getPieForNetwork2()" fusioncharts width="100%" height="400" type="pie2d" dataSource={{dataSourceSelectedPie2}}></div>	
+			</div>
+			
+			<div class="text-center">
+				Choose a network:
+				<div class="div-inline">
+					<ui-select ng-model="selectedTVNetwork2.index" title="Choose a network" on-select="getPieForNetwork2()">
+					    <ui-select-match placeholder="Select a network in the list...">{{$select.selected.name}}</ui-select-match>
+					    <ui-select-choices repeat="selectedTVNetwork2.index as selectedTVNetwork2 in networks | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+					   		<div ng-bind-html="selectedTVNetwork2.name | highlight: $select.search"></div>
+					    </ui-select-choices>
+					</ui-select>		
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+				<h3 class="section-heading">Average Monthly Analysis</h3>
+				<hr class="light">
+                <p class="text-faded">Drag and zoom for more details.</p>
+		</div>
+	
+		<div>
+			<div class="col-lg-12 text-center" ng-init=allcandidateaveragementionsmonthly() fusioncharts width="100%" height="400" type="zoomline" dataSource={{dataSourceavg1}}>FusionCharts will render here</div>
+		</div>
+	
+	</div>
+	
+	<hr>
+	
+	<uib-accordion close-others="oneAtATime">
+	<div uib-accordion-group class="panel-default" heading="Top 10 Days with the Most Mentions on TV">
+	   	<div class="panel-body" style="overflow:visible;">
+			Choose a candidate:
+			<div class="div-inline">
+				<ui-select ng-model="selectedtvCandidate.name" title="Choose a person" on-select="gettop10datestv()">
+					<ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}</ui-select-match>
+				    	<ui-select-choices repeat="selectedtvCandidate.name as selectedtvCandidate in candidates | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+				        	<div ng-bind-html="selectedtvCandidate.name | highlight: $select.search"></div>
+				        </ui-select-choices>
+				</ui-select>
+			</div>
+		</div> 
+				
+		<table class="table" ng-hide="!tvarr">
+			<tr>
+				<th>Date</th>
+				<th>Candidate</th>
+				<th>Mentions</th>
+			</tr>
+			<tr ng-repeat="t in tvarr">
+				<td>{{t.date}}</td>
+				<td>{{t.candidate}}</td>
+				<td>{{t.mentions}}</td>
+			<tr>
+		</table>
+		
+		<div ng-hide="!tvarr" class="col-lg-12 text-center" fusioncharts width="100%" height="400" type="line" dataSource={{dataSource10}}></div>
+		
+	</div>
+
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-12 text-center" id="ending">
+				
+		</div>
+	
+	</div>
+	
+	<!--  
+	<div class="row">
+		<div class="col-md-12 text-center">
+				<h3 class="section-heading">Problem</h3>
+				<hr class="light">
+                <p class="text-faded">If I don't add space underneath the dropdown gets hidden.</p>
+		</div>
+	
+	</div>
+	-->
+	<!--
+	<div class="col-sm-9">
+		<uib-accordion close-others="oneAtATime">
+   			<div uib-accordion-group class="panel-default" heading="Compare">
+	    		<div class="panel-body">
+					Choose a network:
+					<div class="div-inline">
+					  	<ui-select ng-model="selectedtvNetwork.index" title="Choose a network" on-select="getpiefornetwork()">
+				            <ui-select-match placeholder="Select or search a network in the list...">{{$select.selected.name}}</ui-select-match>
+				            <ui-select-choices repeat="selectedtvNetwork.index as selectedtvNetwork in networks | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+				              <div ng-bind-html="selectedtvNetwork.name | highlight: $select.search"></div>
+				            </ui-select-choices>
+				          </ui-select>
+					</div>
+				</div> 
+				
+				<div ng-hide="!selectedtvNetwork.index" fusioncharts width="600" height="400" type="pie2d" dataSource={{dataSourceselectedpie}}></div>
+	
+			
+			</div>
+			-->
+</div>

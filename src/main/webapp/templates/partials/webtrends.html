@@ -1,0 +1,95 @@
+<div class="container">
+	<h1>Web Trends</h1>
+	<p>Navigate to see trends throughout the web during the elections.</p>
+	<hr>
+
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3 text-center">
+				<h3 class="section-heading">Daily Web Mentions</h3>
+				<hr class="light">
+                <p class="text-faded">Drag and zoom for more details.</p>
+		</div>
+		
+		<!-- Graph -->
+		<div>
+			<div class="col-lg-12 text-center" ng-init=allcandidatewebmentionsperday() fusioncharts width="100%" height="400" type="zoomline" dataSource={{dataSourcearea1}}>FusionCharts will render here</div>
+		
+		</div>
+	
+	
+	</div>
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+				<h3 class="section-heading">Total Mentions</h3>
+				<hr class="light">
+               <!-- <p class="text-faded">Total number of web mentions for each candidate.</p> -->
+		</div>
+	
+		<div>
+			<div class="col-lg-12 text-center" ng-init=gettotalwebmentions() fusioncharts width="100%" height="400" type="column2d" dataSource={{dataSource2}}>FusionCharts will render here</div>
+		
+		</div>
+	
+	
+	</div>
+
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+				<h3 class="section-heading">Average Monthly Analysis</h3>
+				<hr class="light">
+                <p class="text-faded">Drag and zoom for more details.</p>
+		</div>
+	
+		<div>
+			<div class="col-lg-12 text-center" ng-init=allcandidateaveragementionsmonthly() fusioncharts width="100%" height="400" type="zoomline" dataSource={{dataSourceavg1}}>FusionCharts will render here</div>
+		</div>
+	
+	</div>
+	
+	<hr>
+	
+	<uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" heading="Top 10 Days with the Most Mentions on the Web">
+	    	<div class="panel-body">
+					Choose a candidate:
+					<div class="div-inline">
+					  	<ui-select ng-model="selectedwebCandidate.name" title="Choose a person" on-select="gettop10datesweb()">
+				            <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}</ui-select-match>
+				            <ui-select-choices repeat="selectedwebCandidate.name as selectedwebCandidate in candidates | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+				            	<div ng-bind-html="selectedwebCandidate.name | highlight: $select.search"></div>
+				            </ui-select-choices>
+				        </ui-select>
+					</div>
+			</div> 
+				<table class="table" ng-hide="!webtop10arr">
+					<tr>
+						<th>Date</th>
+						<th>Candidate</th>
+						<th>Mentions</th>
+					</tr>
+					<tr ng-repeat="t in webtop10arr">
+						<td>{{t.date}}</td>
+						<td>{{t.candidate}}</td>
+						<td>{{t.mentions}}</td>
+					<tr>
+				</table>
+				
+
+				<div ng-hide="!webtop10arr" class="col-lg-12 text-center" fusioncharts width="100%" height="400" type="line" dataSource={{dataSource}}></div>
+				
+	</div>
+	
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-12 text-center" id="ending">
+				
+		</div>
+	
+	</div>
+	
+</div>

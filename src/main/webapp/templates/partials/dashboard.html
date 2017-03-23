@@ -1,0 +1,135 @@
+<div id="dash">
+ 
+	<header id="home">
+		<div class="header-content">
+			<div class="header-content-inner">
+				<h1 id="homeHeading">2016 Presidential Election Media Analysis</h1>
+				<hr class="light">
+				<p>Navigate through our webpage to find interesting trends in the media during the election.</p>
+
+			</div>
+		</div>
+	</header>
+
+	<hr>
+
+	<section class="bg-primary" id="HomepageGraph">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<h2 class="section-heading">Total Number of Media Mentions</h2>
+					   	<hr class="light">
+	                    <p class="text-faded">Drag and zoom for more details.</p>
+				</div>
+				<div ng-init=allcandidatemediamentionsperday() class="col-lg-12 text-center"  fusioncharts width="100%" height="400" type="zoomline" dataSource={{dataSourceline1}}>FusionCharts will render here</div>
+			</div>
+		</div>
+	</section>
+  
+  	<hr>
+  	
+
+    <section id="HPWeb-Mentions">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Total Number of Web Mentions</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3 style="color:red">Donald Trump</h3>
+                        <p class="text-muted">8,913,832</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3 style="color:blue">Hillary Clinton</h3>
+                        <p class="text-muted">6,489,210</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                       
+                        <h3 style="color:blue">Bernie Sanders</h3>
+                        <p class="text-muted">2,447,836</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                       
+                        <h3 style="color:red">Jeb Bush</h3>
+                        <p class="text-muted">1,160,758</p>
+                    </div>
+                </div>
+                <!-- attempting to add angular pie chart underneath -->
+                <div class="col-lg-8 col-lg-offset-2 text-center" ng-init=totalweballcandpie() fusioncharts width="100%" height="400" type="pie2d" dataSource={{dataSourcepie1}}>FusionCharts will render here</div>
+                
+                <!-- Need to fix routing and auto scrolling -->
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                   <a ui-sref="webtrends" class="btn btn-default btn-xl sr-button">Web Trends</a>
+           		</div>
+            </div>
+        </div>
+        
+        
+       	
+    </section>
+	<hr >
+	
+	 <section id="HPTVMentions">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Total Number of TV Mentions</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                       
+                        <h3 style="color:red">Donald Trump</h3>
+                        <p class="text-muted">1,254,674</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        
+                        <h3 style="color:blue">Hillary Clinton</h3>
+                        <p class="text-muted">634,785</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        
+                        <h3 style="color:blue">Bernie Sanders</h3>
+                        <p class="text-muted">192,214</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        
+                        <h3 style="color:red">Jeb Bush</h3>
+                        <p class="text-muted">117,564</p>
+                    </div>
+                </div>
+                <!-- attempting to add angular pie chart underneath -->
+                <div class="col-lg-8 col-lg-offset-2 text-center" ng-init=totaltvallcandpie() fusioncharts width="100%" height="400" type="pie2d" dataSource={{dataSourcepie2}}>FusionCharts will render here</div>
+               
+                <!-- button -->
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                   <a ui-sref="tvtrends" class="page-scroll btn btn-default btn-xl sr-button">TV Trends</a>
+           		</div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    </div>
+  

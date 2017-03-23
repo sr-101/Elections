@@ -1,0 +1,51 @@
+<div class="container">
+	<h1>Word Clouds</h1>
+	<p>Welcome to our word cloud retrieval.</p>
+	<p>See what people are saying on TV or the Web about a certain candidate on any day.</p>
+	<hr>
+	
+	
+	<div class="row col-lg-offset-2 col-lg-10">
+		<div class="col-md-3">
+			<h4>Choose a medium:</h4>
+			<div class="div-inline">
+				<ui-select ng-model="selectedTVorWeb.name" title="Choose a medium" on-select="onMediumChange()"> 
+				<ui-select-match
+					placeholder="Select Web or TV...">{{$select.selected.name}}</ui-select-match>
+				<ui-select-choices repeat="selectedTVorWeb.name as selectedTVorWeb in webortv | filter: $select.search">
+				<div ng-bind-html="selectedTVorWeb.name | highlight: $select.search"></div>
+				</ui-select-choices> </ui-select>
+			</div>
+		</div>
+		<div class="col-md-3" ng-hide="!selectedTVorWeb.name">
+			<h4>Choose a candidate:</h4>
+			<div class="div-inline">
+				<ui-select ng-model="selectedCandidate.name" title="Choose a candidate" on-select="onCandidateChange()"> 
+					<ui-select-match placeholder="Select a candidate...">{{$select.selected.name}}</ui-select-match>
+				<ui-select-choices repeat="selectedCandidate.name as selectedCandidate in candidates | filter: $select.search">
+				<div ng-bind-html="selectedCandidate.name | highlight: $select.search"></div>
+				</ui-select-choices> </ui-select>
+			</div>
+		</div>
+		<div class="col-md-3" ng-hide="!selectedCandidate.name">
+		<h4>Choose a date:</h4>
+			<p class="input-group">
+				<input type="text" class="form-control" uib-datepicker-popup={{format}}
+					ng-model="date" ng-change="onDateChange()" is-open="popup2.opened"
+					datepicker-options="dateOptions" ng-required="true"
+					close-text="Close" /> <span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open2()">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="container col-lg-offset-3 col-lg-4">
+			 <img ng-src={{image}} class="img-rounded" height="125%" width="125%"/>
+		</div>
+	</div>
+	
+
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+	<h1>Trends</h1>
+	<div class="col-sm-9">
+	<uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" heading="Top 10 Mentions on the Web">
+	    	<div class="panel-body">
+					Choose a candidate:
+					<div class="div-inline">
+					  	<ui-select ng-model="selectedwebCandidate.name" title="Choose a person" on-select="gettop10datesweb()">
+				            <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}</ui-select-match>
+				            <ui-select-choices repeat="selectedwebCandidate.name as selectedwebCandidate in candidates | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+				              <div ng-bind-html="selectedwebCandidate.name | highlight: $select.search"></div>
+				            </ui-select-choices>
+				          </ui-select>
+					</div>
+			</div> 
+				<table class="table" ng-hide="!webarr">
+					<tr>
+						<th>Date</th>
+						<th>Candidate</th>
+						<th>Mentions</th>
+					</tr>
+					<tr ng-repeat="t in webarr">
+						<td>{{t.date}}</td>
+						<td>{{t.candidate}}</td>
+						<td>{{t.mentions}}</td>
+					<tr>
+				</table>
+				
+
+				<div ng-hide="!webarr" fusioncharts width="600" height="400" type="line" dataSource={{dataSource}}></div>
+				
+		</div>
+		<div uib-accordion-group class="panel-default" heading="Top 10 Mentions on TV">
+	    	<div class="panel-body">
+					Choose a candidate:
+					<div class="div-inline">
+					  	<ui-select ng-model="selectedtvCandidate.name" title="Choose a person" on-select="gettop10datestv()">
+				            <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}</ui-select-match>
+				            <ui-select-choices repeat="selectedtvCandidate.name as selectedtvCandidate in candidates | filter: $select.search" ng-hide="!$select.open" refresh-delay="0">
+				              <div ng-bind-html="selectedtvCandidate.name | highlight: $select.search"></div>
+				            </ui-select-choices>
+				          </ui-select>
+					</div>
+			</div> 
+				<table class="table" ng-hide="!tvarr">
+					<tr>
+						<th>Date</th>
+						<th>Candidate</th>
+						<th>Mentions</th>
+					</tr>
+					<tr ng-repeat="t in tvarr">
+						<td>{{t.date}}</td>
+						<td>{{t.candidate}}</td>
+						<td>{{t.mentions}}</td>
+					<tr>
+				</table>
+		</div>
+	</div>
+</div>
